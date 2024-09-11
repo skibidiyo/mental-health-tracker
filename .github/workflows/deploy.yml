@@ -30,16 +30,16 @@ jobs:
         PWS_URL: ${{ secrets.PWS_URL }}
       run: |
           # Check if master branch exists locally
-          if ! git show-ref --verify --quiet refs/heads/master; then
+          if ! git show-ref --verify --quiet refs/heads/main; then
             echo "Creating master branch"
-            git branch master
+            git branch main
           fi
           
           # Switch to master branch
-          git checkout master
+          git checkout main
 
           # Push to master branch and capture the output
-          push_output=$(git push $PWS_URL main:master 2>&1)
+          push_output=$(git push $PWS_URL main:main 2>&1)
           if [[ $? -ne 0 ]]; then
             echo "Push failed with output: $push_output"
             echo "Error: Unable to push changes. Please check the error message above and resolve any conflicts manually."
